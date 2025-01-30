@@ -53,11 +53,45 @@ S -> LSL
 
 Note that the Ammann lines will only be reused after 3 recursive iterations.
 
-## 5 sets of Ammann Bars
+## 5 sets of Ammann bars
 
 So, we computed the set of Ammann bars for one orientation. We can take a shortcut (with caveats) for the other orientations.
 
 Note that the tiling (and Ammann bars) are symmetrical about the green dot (see image below). At least locally. So, let's just rotate our Ammann bars about this green dot to generate the Ammann bars for the other 4 orientations.  
 ![image](https://github.com/user-attachments/assets/a2345744-5544-4f48-a4b0-d12af8d448a8)  
+
+Now we can generate the Ammann bars "directly", and see that they exactly match the Ammann bars generated recursively (for the portion near the "green dot"):  
+![image](https://github.com/user-attachments/assets/24c3eb26-c3a5-4194-b95b-ed09ffa6ca91)
+
+## Computing innerness for the Ammann bars
+
+I found a function that seems like a good candidate for computing the "innerness" of Ammann bars. In the image below, note "graph" at the bottom. Horizontally, each line segment corresponds to half an Ammann bar. The vertical position of the line segment corresponds to lighter/darker colors (and therefore innerness). The lower the segment, the brighter the tiling for the half-Ammann bar.
+
+![image](https://github.com/user-attachments/assets/87fb97c7-f50f-4721-98cd-3af71700bcf8)
+
+This function works similarly to how innerness is calculated for the Penrose tiling.
+
+(todo: make this part clearer) 
+Basically, this function recursively subdivides an Amman half-bar. When stepping into a short (S) Ammann bar, the "innerness" either increases or decreases by 1, depending on the parity of the recursive depth.
+```
+   // this can be simplified
+   int calcInnerness( double t0, double tc, double x, bool isLong, int depth )
+   {
+      if ( depth == 0 )
+         return 0;
+
+      if ( isLong )
+      {
+         double tmid = mix( t0, tc, 1 / PHI );
+            return (x > tmid) != (x > t0) ? calcInnerness( tmid, t0, x, true, depth - 1 )
+                                          : calcInnerness( tmid, tc, x, false, depth - 1 ) + (depth & 1 ? 1 : -1);
+      }
+      else
+      {
+         return calcInnerness( tc, t0, x, true, depth - 1 );
+      }
+   };
+```
+
 
 
