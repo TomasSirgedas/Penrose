@@ -93,5 +93,7 @@ Basically, this function recursively subdivides an Amman half-bar. When stepping
    };
 ```
 
-
+Now for each point on the plane we can simply add up the innerness values of the corresponding half-Ammann bar in all 5 orientations, and get a result that matches the recursive, *very* roughly:  
+![image](https://github.com/user-attachments/assets/76e4fbce-2577-46b8-af7c-5fe5c3372067)  
+![image](https://github.com/user-attachments/assets/71d0ce75-4f87-4b7f-92d5-ede63f7153e4)  
 
