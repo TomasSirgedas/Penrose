@@ -92,6 +92,18 @@ Basically, this function recursively subdivides an Amman half-bar. When stepping
       }
    };
 ```
+or
+```
+   // x in [0, .5] on a long (L) Ammann bar
+   int calcInnerness( double x, int depth )
+   {
+      if ( depth <= 0 )
+         return 0;
+
+      return x < .5 / PHI ? calcInnerness( .5 - x * PHI, depth - 1 )
+         : calcInnerness( (.5 - x) / (2 - PHI), depth - 2 ) + (depth & 1 ? 1 : -1);
+   };
+```
 
 Now for each point on the plane we can simply add up the innerness values of the corresponding half-Ammann bar in all 5 orientations, and get a result that matches the recursive, *very* roughly:  
 ![image](https://github.com/user-attachments/assets/76e4fbce-2577-46b8-af7c-5fe5c3372067)  
