@@ -109,3 +109,22 @@ Now for each point on the plane we can simply add up the innerness values of the
 ![image](https://github.com/user-attachments/assets/76e4fbce-2577-46b8-af7c-5fe5c3372067)  
 ![image](https://github.com/user-attachments/assets/71d0ce75-4f87-4b7f-92d5-ede63f7153e4)  
 
+## Computing tiles, given the Ammann bars
+
+![image](https://github.com/user-attachments/assets/94b4fea8-d7f2-4fe8-ace4-c1a1d05b171b)
+
+The fat and skinny tiles always have the same Ammann bar pattern on them. But, starting with the Ammann bars, how can we reconstruct the tiles in a simple way?  
+
+There doesn't seem to be a simple way.
+
+But, now let's draw the Ammann bars from the previous iteration instead:
+
+![image](https://github.com/user-attachments/assets/2d91c7ed-2a5d-421e-931e-cad317e7112f)
+
+Now, for every intersection of "steep" Ammann bar lines, there is a corresponding yellow rhombus. And for every instersection of "shallow" sloped Ammann bar line, there is a corresponding pink rhombus.
+
+Notice that every intersection of the bar lines, there is a corresponding tile.
+
+Here are all the bars drawn in one image:  
+![image](https://github.com/user-attachments/assets/fad77cef-1a8b-4639-add7-a160b338aa69)  
+
